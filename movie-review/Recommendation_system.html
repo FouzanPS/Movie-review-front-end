@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendation System</title>
+    <style>
+        #search-bar {
+            padding: 10px;
+        }
+        #recommendations {
+            margin-top: 20px;
+        }
+        li{
+            list-style-type: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="search-bar">
+        <label for="search">Search:</label>
+        <input type="text" id="search" oninput="updateRecommendations()">
+    </div>
+
+    <div id="recommendations">
+        <h2>Recommendations:</h2>
+        <ul id="recommendation-list"></ul>
+    </div>
+
+    <script>
+        // Sample data for recommendations (you would fetch this from the backend)
+        const recommendationsData = [
+            "Apple",
+            "Banana",
+            "Cherry",
+            "Date",
+            "Fig",
+            "Grapes",
+            "Kiwi",
+            "Lemon",
+            "Mango",
+            "Orange",
+            "Pear",
+            "Quince",
+            "Raspberry",
+            "Strawberry",
+            "Watermelon",
+            "Salamon"
+        ];
+
+        function updateRecommendations() {
+            const searchTerm = document.getElementById("search").value.toLowerCase();
+            const filteredRecommendations = recommendationsData.filter(item => item.toLowerCase().startsWith(searchTerm));
+            const recommendationList = document.getElementById("recommendation-list");
+            if(searchTerm == ""){
+                recommendationList.innerHTML = "";
+            }
+            else{
+                displayRecommendations(filteredRecommendations);
+            }
+            
+        }
+
+        function displayRecommendations(recommendations) {
+            const recommendationList = document.getElementById("recommendation-list");
+    
+            // Clear previous recommendations
+            recommendationList.innerHTML = "";
+    
+            // Display new recommendations
+            recommendations.forEach(item => {
+                const a = document.createElement("a");
+                const li = document.createElement("li");
+                a.href = "#"; // Set the href attribute of the <a> tag if needed
+                li.textContent = item;
+                a.appendChild(li); // Append the <li> to the <a>
+                recommendationList.appendChild(a); // Append the <a> to the recommendation list
+            });
+        }
+    </script>
+
+</body>
+</html>

@@ -4,62 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<style>
-    body{
-        margin: 0;
-        background-color: beige;
-    }
-    .head{
-        margin: 0px; color: black; 
-        text-shadow: rgb(148, 148, 148) 3px 3px 5px;
-    }
-    .container{
-        background-color:#ffffff ;
-        margin-left: 20%;
-        margin-right: 20%;
-        padding: 15px;
-        min-height: 100vh;
-        border-radius: 25px;
-        border: #013732 5px solid;;
-    }
-    .box{
-        margin-top: 30px;
-        display: grid;
-        grid-template-columns: 150px auto ;
-        grid-template-rows:auto auto ;
-    }
-    #image{
-        grid-row: span 2;
-    }
-    img{
-        border: black solid 2px;
-        box-shadow: 3px 3px 6px black;
-    }
-    a{
-        text-decoration: none; 
-        color: black;
-    }
-    a:hover{
-        color: #0073ff;
-        text-decoration: underline;
-    }
-    @media only screen and (max-width: 800px) {
-        .container{
+    <style>
+        body {
             margin: 0;
+            background-color: #FFF3C7;
         }
-    }
-</style>
+        .head {
+            margin: 0px;
+            color: black; 
+            text-shadow: rgb(148, 148, 148) 3px 3px 5px;
+        }
+        .container {
+            background-color:#ffffff;
+            margin-left: 20%;
+            margin-right: 20%;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            padding: 15px;
+            min-height: 100vh;
+            border-radius: 25px;
+            border: #013732 5px solid;
+            box-shadow: 4px 4px 8px 8px black;
+        }
+        .box {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: 150px auto ;
+            grid-template-rows: auto auto ;
+            transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+            will-change: transform, box-shadow;
+            padding: 15px;
+            border-radius: 25px;
+        }
+        .box:hover{
+            transform: scale(1.03); 
+            border: black solid 2px;
+        }
+        #image {
+            grid-row: span 2;
+        }
+        img {
+            border: black solid 2px;
+            box-shadow: 3px 3px 6px black;
+        }
+        a.text-link {
+            text-decoration: none; 
+            color: black;
+            display: inline-block; /* Make the link inline with the text */
+        }
+        a.text-link:hover {
+            color: rgb(190, 123, 0);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        a:hover{
+            cursor: pointer;
+        }
+        @media only screen and (max-width: 800px) {
+            .container {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
 <body>
     <div class="container">
         <h1 class="head">Hi, I am Fouzan</h1>
         <h2 class="head">List of Movies & Series I've watched </h2>
-        <h3 style="margin-bottom: 30px;">This is a list of movies with short summary for every movie i’ve watched, <span style="color: rgb(199, 199, 107); text-decoration: underline;">with a recommendation rating out of 10 according to me.</span> You can access the movie using the imdbID which will be given if you click the movie. </h3>
+        <h3 style="margin-bottom: 30px;">This is a list of movies with short summary for every movie i’ve watched, <span style="color: rgb(148, 123, 9); text-decoration: underline;">with a recommendation rating out of 10 according to me.</span> You can access the movie using the imdbID which will be given if you click the movie. </h3>
         <hr color="black">
         <div class="box">
-            <div id="image"><img src="Screenshot 2024-03-13 at 10.37.47 PM.png" height="180"></div>
+            <div id="image"><a href="#"><img src="Screenshot 2024-03-13 at 10.37.47 PM.png" height="180"></a></div>
             <div id="content">
-                <a href="#"><h1 style="margin: 0px;">Kick</h1></a>
+                <a href="#" class="text-link"><h1 style="margin: 0px;">Kick</h1></a>
                 <h3 style="margin: 0px;">Date watched: 19/02/2023</h3>
                 <h3 style="margin: 0px;">My Recommendation: 9/10</h3>
             </div>
@@ -68,64 +85,6 @@
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                 </p>
             </div>
-            
         </div>
-        <div class="box">
-            <div id="image"><img src="Screenshot 2024-03-13 at 10.37.47 PM.png" height="180"></div>
-            <div id="content">
-                <a href="#"><h1 style="margin: 0px;">Kick</h1></a>
-                <h3 style="margin: 0px;">Date watched: 19/02/2023</h3>
-                <h3 style="margin: 0px;">My Recommendation: 9/10</h3>
-            </div>
-            <div id="summary">
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
-            </div>
-            
-        </div>
-        <div class="box">
-            <div id="image"><img src="Screenshot 2024-03-13 at 10.37.47 PM.png" height="180"></div>
-            <div id="content">
-                <a href="#"><h1 style="margin: 0px;">Kick</h1></a>
-                <h3 style="margin: 0px;">Date watched: 19/02/2023</h3>
-                <h3 style="margin: 0px;">My Recommendation: 9/10</h3>
-            </div>
-            <div id="summary">
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
-            </div>
-            
-        </div>
-        <div class="box">
-            <div id="image"><img src="Screenshot 2024-03-13 at 10.37.47 PM.png" height="180"></div>
-            <div id="content">
-                <a href="#"><h1 style="margin: 0px;">Kick</h1></a>
-                <h3 style="margin: 0px;">Date watched: 19/02/2023</h3>
-                <h3 style="margin: 0px;">My Recommendation: 9/10</h3>
-            </div>
-            <div id="summary">
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
-            </div>
-            
-        </div>
-        <div class="box">
-            <div id="image"><img src="Screenshot 2024-03-13 at 10.37.47 PM.png" height="180"></div>
-            <div id="content">
-                <a href="#"><h1 style="margin: 0px;">Kick</h1></a>
-                <h3 style="margin: 0px;">Date watched: 19/02/2023</h3>
-                <h3 style="margin: 0px;">My Recommendation: 9/10</h3>
-            </div>
-            <div id="summary">
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
-            </div>
-            
-        </div>
-    </div>
 </body>
-</html
+</html>

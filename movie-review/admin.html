@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        background-color: #FFF3C7;
+        font-size: 30px;
+    }
+    .container {
+        background-color:#ffffff;
+        margin-left: 20%;
+        margin-right: 20%;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        padding: 15px;
+        min-height: 100vh;
+        border-radius: 25px;
+        border: #013732 5px solid;
+        box-shadow: 4px 4px 8px 8px black;
+    }
+    label{
+        font-weight: bold;
+        width: 50%;
+        margin-top: 5px;
+    }
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    textarea {
+        width: 100%; /* Set width to 100% */
+        transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+        will-change: transform, box-shadow;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    input[type="date"]:focus,
+    textarea:focus {
+        transform: scale(1.03);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    th{
+        width: 50%;
+        text-align: left;
+    }
+    table {
+        margin: auto; /* Center the table */
+        border-collapse: separate; /* Separate border for each cell */
+        border-spacing: 0 20px; /* Spacing between rows */
+      }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: large;
+    }
+
+    #recommendations {
+        list-style-type: none;
+        font-size: medium;
+        display: none;
+        border-radius: 5px;
+        border: 1px solid black;
+        background-color: #f0f0f0;
+        padding: 0;
+        text-align: left;
+    }   
+    li{
+        border-bottom:  1px solid black;
+    }
+    li:hover{
+        background-color: #d0d0d0;
+    }
+
+    #recommendations a {
+        color: black; /* Set link color to black */
+        text-decoration: none; /* Remove underline */
+    }
+
+    #recommendations a:hover {
+        text-decoration: underline; /* Underline on hover */
+    }
+    #summary{
+        width: 60%;
+    }
+
+    input[type = "submit"] {
+        width: 100px;
+        height: 40px;
+        border-radius: 5px;
+        background-color: #14f269;
+        border: #013732;
+        transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+        will-change: transform, box-shadow;
+    }
+    input[type = "submit"]:hover{
+        cursor: pointer;
+        background-color: #00990a;
+        transform: scale(1.1);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    @media only screen and (max-width: 800px) {
+        .container {
+            margin: 0;
+        }
+    }
+</style>
+<body>
+    <div class="container">
+        <form id="admin" action="/submit" method="post" style="margin-top: 70px;">
+            <table>
+                <tr>
+                    <th><label for="movieName">Enter movie name:</label></th>
+                    <th><input type="text" id="movieName" oninput="updateRecommendations()" placeholder="Search for the movie"><br></th>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <ul id="recommendations"></ul> 
+                    </th>
+                </tr>
+                <tr>
+                    <th><label for="summary">Summary:</label></th>
+                    <th><textarea id="summary" name="summary" placeholder="Enter short summary of the movie here..." style="height: 100px; width: 100%;"></textarea><br></th>
+                </tr>
+                <tr>
+                    <th> <label for="DateWatched">Date watched:</label></th>
+                    <th><input name="dateWatched" type="date" id="dateWatched" style="height: 30px;"><br></th>
+                </tr>
+                <tr>
+                    <th><label for="Rating">Rating: </label></th>
+                    <th><input name="rating" type="number" id="rating" min="1" max="10" placeholder="Rate it out of 10..."><br></th>
+                </tr>
+                <tr>
+                    <th colspan="2" style="text-align: center; padding-top: 30px ;"><input type="submit" value="Submit"></th>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script>
+         const recommendationsData = [
+            "Apple",
+            "Banana",
+            "Cherry",
+            "Date",
+            "Fig",
+            "Grapes",
+            "Kiwi",
+            "Lemon",
+            "Mango",
+            "Orange",
+            "Pear",
+            "Quince",
+            "Raspberry",
+            "Strawberry",
+            "Watermelon",
+            "Salamon"
+        ];
+
+        function updateRecommendations() {
+    const searchTerm = document.getElementById("movieName").value.toLowerCase();
+    const filteredRecommendations = recommendationsData.filter(item => item.toLowerCase().startsWith(searchTerm));
+    const recommendationList = document.getElementById("recommendations");
+    recommendationList.innerHTML = ""; // Clear previous recommendations
+    if (searchTerm === "") {
+        recommendationList.style.display = "none"; // Hide recommendations when input is empty
+    }else if (filteredRecommendations.length === 0 ){
+        recommendationList.innerHTML = "<li>Not Found</li>";
+    }else {
+        displayRecommendations(filteredRecommendations);
+        recommendationList.style.display = "block"; // Show recommendations
+    }
+}
+
+function displayRecommendations(recommendations) {
+    const recommendationList = document.getElementById("recommendations");
+
+    // Display new recommendations
+    recommendations.forEach(item => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = "#"; // Set the href attribute of the <a> tag if needed
+        li.textContent = item;
+        a.appendChild(li); // Append the <li> to the <a>
+        recommendationList.appendChild(a); // Append the <a> to the recommendation list
+    });
+}
+
+
+
+    </script>
+</body>
+</html>

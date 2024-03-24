@@ -8,8 +8,11 @@
 <style>
     body {
         margin: 0;
-        background-color: #FFF3C7;
         font-size: 30px;
+        background-color: #e4e9fd;
+        background-image: -webkit-linear-gradient(65deg, #468dff 50%, #e4e9fd 50%);
+        min-height: 100vh;
+        font-family: "helvetica neue";
     }
     .container {
         background-color:#ffffff;
@@ -27,6 +30,7 @@
         font-weight: bold;
         width: 50%;
         margin-top: 5px;
+        -webkit-text-stroke: 1px #468dff;
     }
     input[type="text"],
     input[type="number"],
@@ -59,10 +63,10 @@
     input[type="text"],
     input[type="number"],
     input[type="date"] {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: large;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: large;
     }
 
     #recommendations {
@@ -114,6 +118,9 @@
         .container {
             margin: 0;
         }
+        body{
+            font-size: 18px;
+        }
     }
 </style>
 <body>
@@ -142,7 +149,7 @@
                     <th><input name="rating" type="number" id="rating" min="1" max="10" placeholder="Rate it out of 10..."><br></th>
                 </tr>
                 <tr>
-                    <th colspan="2" style="text-align: center; padding-top: 30px ;"><input type="submit" value="Submit"></th>
+                    <th colspan="2" style="text-align: center; padding-top: 30px ; font-weight: bolder;"><input type="submit" value="Submit"></th>
                 </tr>
             </table>
         </form>
@@ -168,19 +175,19 @@
         ];
 
         function updateRecommendations() {
-    const searchTerm = document.getElementById("movieName").value.toLowerCase();
-    const filteredRecommendations = recommendationsData.filter(item => item.toLowerCase().startsWith(searchTerm));
-    const recommendationList = document.getElementById("recommendations");
-    recommendationList.innerHTML = ""; // Clear previous recommendations
-    if (searchTerm === "") {
-        recommendationList.style.display = "none"; // Hide recommendations when input is empty
-    }else if (filteredRecommendations.length === 0 ){
-        recommendationList.innerHTML = "<li>Not Found</li>";
-    }else {
-        displayRecommendations(filteredRecommendations);
-        recommendationList.style.display = "block"; // Show recommendations
-    }
-}
+        const searchTerm = document.getElementById("movieName").value.toLowerCase();
+        const filteredRecommendations = recommendationsData.filter(item => item.toLowerCase().startsWith(searchTerm));
+        const recommendationList = document.getElementById("recommendations");
+        recommendationList.innerHTML = ""; // Clear previous recommendations
+        if (searchTerm === "") {
+            recommendationList.style.display = "none"; // Hide recommendations when input is empty
+        }else if (filteredRecommendations.length === 0 ){
+            recommendationList.innerHTML = '<li style="color:red">Not Found</li>';
+        }else {
+            displayRecommendations(filteredRecommendations);
+            recommendationList.style.display = "block"; // Show recommendations
+        }
+    }   
 
 function displayRecommendations(recommendations) {
     const recommendationList = document.getElementById("recommendations");
@@ -190,6 +197,7 @@ function displayRecommendations(recommendations) {
         const li = document.createElement("li");
         const a = document.createElement("a");
         a.href = "#"; // Set the href attribute of the <a> tag if needed
+
         li.textContent = item;
         a.appendChild(li); // Append the <li> to the <a>
         recommendationList.appendChild(a); // Append the <a> to the recommendation list

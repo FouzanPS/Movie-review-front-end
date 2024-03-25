@@ -142,7 +142,7 @@
                 </tr>
                 <tr>
                     <th> <label for="DateWatched">Date watched:</label></th>
-                    <th><input name="dateWatched" type="date" id="dateWatched" style="height: 30px;"><br></th>
+                    <th><input name="dateWatched" type="date" id="dateWatched" style="height: 30px;" onchange="validateDate()" required><br></th>
                 </tr>
                 <tr>
                     <th><label for="Rating">Rating: </label></th>
@@ -188,6 +188,16 @@
             recommendationList.style.display = "block"; // Show recommendations
         }
     }   
+    
+    function validateDate() {
+        const inputDate = new Date(document.getElementById('dateWatched').value);
+        const currentDate = new Date();
+        if (inputDate > currentDate) {
+            alert('Please select a date before or equal to today.');
+            document.getElementById('dateWatched').value = ''; // Clear the input field
+        }
+    }
+
 
 function displayRecommendations(recommendations) {
     const recommendationList = document.getElementById("recommendations");

@@ -1,0 +1,3 @@
+t1=int2+int3
+t2=t1-sint3
+int1=t2
